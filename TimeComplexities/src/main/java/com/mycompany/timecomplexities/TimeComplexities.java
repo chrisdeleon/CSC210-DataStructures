@@ -5,9 +5,8 @@ package com.mycompany.timecomplexities;
  * CSC210 - Time Complexities
  * 2/12/2023
  */
-public class TimeComplexities {
-    
 
+public class TimeComplexities {
     public static void main(String[] args) {
         
         // creates an array with 100,000 elements
@@ -37,11 +36,7 @@ public class TimeComplexities {
         System.out.println("Total iterations: " + obj.getCounter());
         System.out.println("Total time to find element: " + (endTime / 1000000000) + " seconds");
 
-        
-        
-        
-        
-        
+        obj.Quadratic(); //  runs the quadratic time complexity
     }
 }
 
@@ -61,17 +56,16 @@ class AsymptoticAnalysis {
         public int[] getArray(){
             return Array;
         }
+        
         // this sets the array created in the main method to the private method
         public void setArray (int[] Array){
             this.Array = Array;
         }
         
+        // returns the counter
         public int getCounter(){
             return counter;
         }
-        
-        
-        
         
         
         public void Linear(int target){
@@ -105,9 +99,6 @@ class AsymptoticAnalysis {
         }
         
         
-        
-        
-        
         public void Constant(){
             /* A constant linear time complexity always takes the same amount of retrieval time.
                Of course, there are several factors that go in to the run-time of a program so exact results aren't common. */
@@ -122,6 +113,7 @@ class AsymptoticAnalysis {
             System.out.println("Total iterations will always be 1");
             System.out.println("Total time: " + (duration / 1000000000) + " seconds");
         }
+        
         
         public int Logarithm(int[] Array, int SearchIndex, int Lowest, int Highest){
             /* This method is a binary search which is an example of a logarithm time complexity, in theory, the larger
@@ -140,14 +132,26 @@ class AsymptoticAnalysis {
         }
         
         
-        
-        
-        
-        
-        
-        // method 3 - logarithm
-        // return the number of iterations
-        
-        // method 4 - quadratic
-        // return the number of iterations
+        public void Quadratic(){
+            /* This method searches the entire array for duplicates. 
+               The nested for-loop causes this time complexity to be O(n^2).
+               Without the for-loop, it would be O(n) */
+            
+            int counter = 0; // counter for iterations
+            int duplicate = 0; // counter for duplicates
+            
+            double start = System.nanoTime();
+            for(int outer = 0; outer < this.Array.length; outer++){ // outer loop grabs a number to compare
+                for(int inner = 0; inner < this.Array.length; inner++){ // inner loop compares each element to the current outer loop element
+                    counter++; 
+                    if(outer == inner){
+                        duplicate++;
+                    }
+                }
+            }
+            double duration = System.nanoTime() - start;
+            System.out.println("\n***************** Quadratic Time Complexity *****************\n");
+            System.out.println("Total iterations: " + counter);
+            System.out.println("Total time: " + (duration / 1000000000) + " seconds\n");
+        }
     }
