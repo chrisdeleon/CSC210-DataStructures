@@ -23,7 +23,7 @@ public class SortingTheArray {
         obj.printTheArray();
         obj.printTheSortedArray(); // you will note that the array is no longer sorted because of the insert method
         obj.sortTheArray(); // the array is sorted again
-        obj.printTheSortedArray(); // the printed sorted array is correct
+        obj.printTheSortedArray(); // this display array is properly sorted now
         
         
 
@@ -58,10 +58,16 @@ public class SortingTheArray {
             // outer loop obtains the number to compare
             for (int i = 0; i < SortedArray.length - 1; i++) { 
                 // inner loop obtains the numbers that will be compared to outer loop number
-                for (int j = 0; j < SortedArray.length - i - 1; j++) { 
+                for (int j = 0; j < SortedArray.length - 1; j++) { 
+                    // the if statement below is for when the next element contains a number smaller than the current element
+                    // it essentially swaps them around so that the array is put into ascending order
                     if (SortedArray[j] > SortedArray[j + 1]) {
+                        
+                        // as it name says, the holder variable stores the larger number
                         int holder = SortedArray[j];
+                        // here the smaller number is moved into the larger number's position (aka moved down)
                         SortedArray[j] = SortedArray[j + 1];
+                        // now the larger number moves up
                         SortedArray[j + 1] = holder;
                     }
                 }
